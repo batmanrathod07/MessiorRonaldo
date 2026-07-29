@@ -2,10 +2,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
 import { 
-getFirestore, 
-doc, 
-getDoc, 
-updateDoc 
+    getFirestore, 
+    doc, 
+    getDoc, 
+    updateDoc 
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
@@ -22,12 +22,28 @@ const firebaseConfig = {
 
 // Firebase start
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
+
+
+// Firestore location
 const votesRef = doc(db, "votes", "players");
 
 
-// Firebase se current votes lana
+// Variables
+let messiVotes = 0;
+let ronaldoVotes = 0;
+let userVote = null;
+
+
+// HTML elements
+const messiBtn = document.getElementById("messiBtn");
+const ronaldoBtn = document.getElementById("ronaldoBtn");
+
+const messiCount = document.getElementById("messiVotes");
+const ronaldoCount = document.getElementById("ronaldoVotes");
+
+
+// Load votes from Firebase
 async function loadVotes(){
 
     const snapshot = await getDoc(votesRef);
@@ -41,24 +57,10 @@ async function loadVotes(){
 
         updateVotes();
     }
+
 }
 
-
-// Page load hote hi votes lao
 loadVotes();
-console.log("Firebase connected");
-
-let messiVotes = 0;
-let ronaldoVotes = 0;
-
-let userVote = null;
-
-
-const messiBtn = document.getElementById("messiBtn");
-const ronaldoBtn = document.getElementById("ronaldoBtn");
-
-const messiCount = document.getElementById("messiVotes");
-const ronaldoCount = document.getElementById("ronaldoVotes");
 
 
 // Messi button
@@ -67,25 +69,36 @@ messiBtn.addEventListener("click", async function(){
     if(userVote === "messi"){
 
         messiVotes--;
+
+        await updateDoc(votesRef, {
+            messi: messiVotes
+        });
+
         userVote = null;
 
         enableButtons();
 
-    } 
+    }
+
     else if(userVote === null){
 
+        messiVotes++;
+
         await updateDoc(votesRef, {
-    messi: messiVotes
-});
+            messi: messiVotes
+        });
+
         userVote = "messi";
 
         ronaldoBtn.disabled = true;
         messiBtn.classList.add("selected");
     }
 
+
     updateVotes();
 
 });
+
 
 
 // Ronaldo button
@@ -94,28 +107,39 @@ ronaldoBtn.addEventListener("click", async function(){
     if(userVote === "ronaldo"){
 
         ronaldoVotes--;
+
+        await updateDoc(votesRef, {
+            ronaldo: ronaldoVotes
+        });
+
         userVote = null;
 
         enableButtons();
 
-    } 
+    }
+
     else if(userVote === null){
 
+        ronaldoVotes++;
+
         await updateDoc(votesRef, {
-    ronaldo: ronaldoVotes
-});
+            ronaldo: ronaldoVotes
+        });
+
         userVote = "ronaldo";
 
         messiBtn.disabled = true;
         ronaldoBtn.classList.add("selected");
     }
 
+
     updateVotes();
 
 });
 
 
-// Update number
+
+// Update numbers on website
 function updateVotes(){
 
     messiCount.innerHTML = messiVotes;
@@ -124,7 +148,8 @@ function updateVotes(){
 }
 
 
-// Enable both buttons
+
+// Enable buttons again
 function enableButtons(){
 
     messiBtn.disabled = false;
@@ -134,3 +159,6 @@ function enableButtons(){
     ronaldoBtn.classList.remove("selected");
 
 }
+
+
+console.log("Firebase connected");
