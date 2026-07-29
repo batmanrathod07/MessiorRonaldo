@@ -62,7 +62,7 @@ const ronaldoCount = document.getElementById("ronaldoVotes");
 
 
 // Messi button
-messiBtn.addEventListener("click", function(){
+messiBtn.addEventListener("click", async function(){
 
     if(userVote === "messi"){
 
@@ -89,7 +89,7 @@ messiBtn.addEventListener("click", function(){
 
 
 // Ronaldo button
-ronaldoBtn.addEventListener("click", function(){
+ronaldoBtn.addEventListener("click", async function(){
 
     if(userVote === "ronaldo"){
 
