@@ -1,3 +1,4 @@
+alert("Script started");
 // Firebase import
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
@@ -23,7 +24,7 @@ const firebaseConfig = {
 // Firebase start
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+alert("Firebase initialized");
 
 // Firestore location
 const votesRef = doc(db, "votes", "players");
