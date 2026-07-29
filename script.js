@@ -11,12 +11,11 @@ const messiCount = document.getElementById("messiVotes");
 const ronaldoCount = document.getElementById("ronaldoVotes");
 
 
-// Messi button click
+// Messi button
 messiBtn.addEventListener("click", function(){
 
     if(userVote === "messi"){
 
-        // Remove Messi vote
         messiVotes--;
         userVote = null;
 
@@ -25,66 +24,48 @@ messiBtn.addEventListener("click", function(){
     } 
     else if(userVote === null){
 
-        // Add Messi vote
         messiVotes++;
         userVote = "messi";
 
-        disableRonaldo();
-
+        ronaldoBtn.disabled = true;
+        messiBtn.classList.add("selected");
     }
 
     updateVotes();
+
 });
 
 
-// Ronaldo button click
+// Ronaldo button
 ronaldoBtn.addEventListener("click", function(){
 
     if(userVote === "ronaldo"){
 
-        // Remove Ronaldo vote
         ronaldoVotes--;
         userVote = null;
 
         enableButtons();
 
-    }
+    } 
     else if(userVote === null){
 
-        // Add Ronaldo vote
         ronaldoVotes++;
         userVote = "ronaldo";
 
-        disableMessi();
-
+        messiBtn.disabled = true;
+        ronaldoBtn.classList.add("selected");
     }
 
     updateVotes();
+
 });
 
 
-// Update vote numbers
+// Update number
 function updateVotes(){
 
     messiCount.innerHTML = messiVotes;
     ronaldoCount.innerHTML = ronaldoVotes;
-
-}
-
-
-// Disable opposite button
-function disableRonaldo(){
-
-    ronaldoBtn.disabled = true;
-    messiBtn.classList.add("selected");
-
-}
-
-
-function disableMessi(){
-
-    messiBtn.disabled = true;
-    ronaldoBtn.classList.add("selected");
 
 }
 
