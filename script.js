@@ -162,3 +162,4 @@ function enableButtons(){
 
 
 console.log("Firebase connected");
+alert("JS working");
