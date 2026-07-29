@@ -6,12 +6,12 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/12.16.0/firebas
 
 // Firebase config
 const firebaseConfig = {
-  apiKey: "tumhara wala",
-  authDomain: "tumhara wala",
-  projectId: "tumhara wala",
-  storageBucket: "tumhara wala",
-  messagingSenderId: "tumhara wala",
-  appId: "tumhara wala"
+    apiKey: "AIzaSyB-gm0OpQlSHRmnTqiln25c_vJ9X9_aDtY",
+    authDomain: "messiorronaldo-9a04a.firebaseapp.com",
+    projectId: "messiorronaldo-9a04a",
+    storageBucket: "messiorronaldo-9a04a.firebasestorage.app",
+    messagingSenderId: "254193600635",
+    appId: "1:254193600635:web:f56e462317b1921917fade"
 };
 
 
