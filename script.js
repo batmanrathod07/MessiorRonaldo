@@ -24,6 +24,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+const votesRef = doc(db, "votes", "players");
+
+
+// Firebase se current votes lana
+async function loadVotes(){
+
+    const snapshot = await getDoc(votesRef);
+
+    if(snapshot.exists()){
+
+        const data = snapshot.data();
+
+        messiVotes = data.messi;
+        ronaldoVotes = data.ronaldo;
+
+        updateVotes();
+    }
+}
+
+
+// Page load hote hi votes lao
+loadVotes();
 console.log("Firebase connected");
 
 let messiVotes = 0;
