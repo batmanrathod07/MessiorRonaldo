@@ -74,7 +74,9 @@ messiBtn.addEventListener("click", function(){
     } 
     else if(userVote === null){
 
-        messiVotes++;
+        await updateDoc(votesRef, {
+    messi: messiVotes
+});
         userVote = "messi";
 
         ronaldoBtn.disabled = true;
@@ -99,7 +101,9 @@ ronaldoBtn.addEventListener("click", function(){
     } 
     else if(userVote === null){
 
-        ronaldoVotes++;
+        await updateDoc(votesRef, {
+    ronaldo: ronaldoVotes
+});
         userVote = "ronaldo";
 
         messiBtn.disabled = true;
