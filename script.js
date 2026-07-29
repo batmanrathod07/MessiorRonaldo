@@ -65,7 +65,7 @@ loadVotes();
 
 // Messi button
 messiBtn.addEventListener("click", async function(){
-
+console.log("Messi button clicked");
     if(userVote === "messi"){
 
         messiVotes--;
@@ -103,7 +103,7 @@ messiBtn.addEventListener("click", async function(){
 
 // Ronaldo button
 ronaldoBtn.addEventListener("click", async function(){
-
+console.log("Ronaldo button clicked");
     if(userVote === "ronaldo"){
 
         ronaldoVotes--;
