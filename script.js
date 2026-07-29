@@ -1,3 +1,25 @@
+// Firebase import
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "tumhara wala",
+  authDomain: "tumhara wala",
+  projectId: "tumhara wala",
+  storageBucket: "tumhara wala",
+  messagingSenderId: "tumhara wala",
+  appId: "tumhara wala"
+};
+
+
+// Firebase start
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
 let messiVotes = 0;
 let ronaldoVotes = 0;
 
