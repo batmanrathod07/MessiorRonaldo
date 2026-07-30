@@ -56,12 +56,24 @@ async function loadVotes(){
         messiVotes = data.messi;
         ronaldoVotes = data.ronaldo;
 
-        updateVotes();
+        function updateVotes() {
+    messiCount.innerHTML = messiVotes;
+    ronaldoCount.innerHTML = ronaldoVotes;
+        }
     }
 
 }
 
-loadVotes();
+async function loadVotes() {
+    const snapshot = await getDoc(votesRef);
+
+    if (snapshot.exists()) {
+        const data = snapshot.data();
+        messiVotes = data.messi;
+        ronaldoVotes = data.ronaldo;
+        updateVotes();
+    }
+}
 
 
 // Messi button
@@ -96,7 +108,10 @@ console.log("Messi button clicked");
     }
 
 
-    updateVotes();
+    function updateVotes() {
+    messiCount.innerHTML = messiVotes;
+    ronaldoCount.innerHTML = ronaldoVotes;
+    }
 
 });
 
@@ -115,7 +130,13 @@ console.log("Ronaldo button clicked");
 
         userVote = null;
 
-        enableButtons();
+        function enableButtons() {
+    messiBtn.disabled = false;
+    ronaldoBtn.disabled = false;
+
+    messiBtn.classList.remove("selected");
+    ronaldoBtn.classList.remove("selected");
+        }
 
     }
 
